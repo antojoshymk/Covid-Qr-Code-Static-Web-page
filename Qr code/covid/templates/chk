@@ -1,0 +1,14 @@
+input:invalid {
+  border: 2px dashed red;
+}
+{%for i in obj.symptoms%}
+            
+           <td >{{i}} </td>
+            {%endfor%}
+<td class="column1">Are you a co passanger of Covid 19 cases in a vehicle/Aeroplane?
+   
+            </td>
+          
+            <td>{{obj.passanger|nonechk}} </td>
+           </tr> 
+           

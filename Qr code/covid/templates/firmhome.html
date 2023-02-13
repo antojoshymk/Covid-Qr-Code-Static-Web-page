@@ -1,0 +1,62 @@
+{%extends 'base.html'%}
+{%block content%}
+<style>
+    nav{
+        /* box-shadow: 0 10px 80px rgb(250, 249, 249);  */
+        padding: 70px;
+        background: rgb(15, 1, 48);
+
+    }
+    ul{
+        /* box-shadow: 0 10px 80px rgb(255, 253, 253);  */
+        padding: 20px;
+    }
+    li{
+        /* box-shadow: 0 10px 80px rgb(245, 245, 245);  */
+    }
+</style>
+
+<div style=" text-align: center; margin-top: 10%;">
+  <h1 style=" padding-bottom: 30px; font-size:50px; color: white;"><b>Welcome{{firm_obj.firmname}}</b></h1></div><br>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" style="font-size: 40px;"><b>Firm Home</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" style="font-size:x-large"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Scan QR Code
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="scanqrcode" style="color: black;">SCAN QR CODE</a>
+             
+              
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large" href="search" style="color: black;">Search</a>
+          </li>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large" href="logoutfirm" style="color: black;">Logout</a>
+          </li>
+              
+      </ul>
+      
+    </div>
+  </nav>
+
+<!-- 
+<div style=" text-align: center; margin-top: 10%;">
+<h1 style=" padding-bottom: 30px; font-size:50px; color: white;"><b>Welcome{{firm_obj.firmname}}</b></h1></div><br> -->
+
+<!-- <button class="btn btn-success" type="button" onclick="location.href='scanqrcode';" style="font-size: 20px;">Scan QRCode</button>
+<br><br> -->
+<!---<button class="btn btn-success" type="button" style="margin: 50px;"onclick="location.href='submitpdf_firm';">Submit Client Data </button>!--->
+<!-- <button class="btn btn-success" type="button" onclick="location.href='logoutfirm';">Logout</button> -->
+<a href="logoutfirm" style="color: white; font-size: 20px;">Logout</a>
+
+{%endblock%}

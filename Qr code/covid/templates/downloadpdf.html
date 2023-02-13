@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block content%}
+<button class="btn btn-success" type="button" onclick="location.href='clienthome';">Home</button>
+<button class="btn btn-success" type="button" onclick="location.href='logoutclient';">Logout</button>
+
+<div style=" text-align: center; margin-top: 10%;">
+<h1><a href={{document.pdfdata.url}} download class="button" style="color: white;" ><b> Download PDF</b> </a></h1>
+<h1><a href={{document.qrdata.url}} download class="button"  style="color: white;" > <b>Download QR Code</b> </a></h1>
+
+<img src="{{document.qrdata.url}}">
+
+</div>
+
+{%endblock%}
+
+

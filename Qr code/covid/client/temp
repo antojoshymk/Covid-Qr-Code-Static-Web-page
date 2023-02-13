@@ -1,0 +1,3 @@
+class clientdocument(models.Model):
+    pdfdata=models.FileField(upload_to="documents",null=True,blank=True)
+    client=models.ForeignKey(clientdataqrexe2,on_delete=models.CASCADE)

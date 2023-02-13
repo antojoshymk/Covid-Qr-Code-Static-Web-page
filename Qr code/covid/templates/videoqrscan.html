@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%block content %} 
+
+<style>
+    nav{
+        /* box-shadow: 0 10px 80px rgb(179, 15, 15);  */
+        padding: 70px;
+        background: rgb(15, 1, 48);
+  
+    }
+    ul{
+        /* box-shadow: 0 10px 80px rgb(179, 15, 15);  */
+        padding: 20px;
+    }
+    li{
+        /* box-shadow: 0 10px 80px rgb(179, 15, 15);  */
+    }
+  </style>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><b>QR Code Video Scan</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large" href="firmhome">Firm Home</a>
+          </li>
+         
+          
+          
+          <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large" href="logoutfirm">Logout</a>
+          </li>
+              
+      </ul>
+      
+    </div>
+  </nav>
+<!-- <center><h1 style="color: white; font-size: 30px;"><b>Scan Qr Code</b></h1></center> -->
+<form action="resultvideo" method="post">
+    {%csrf_token%}
+<img src = "{% url 'video_stream' %}">
+
+
+
+<input type="submit" class="btn btn-success" value="Capture QR code"><br><br>
+
+<!-- <a class="btn btn-success" style="font-size:20px;" href="firmhome">Firm Home</a>
+<a class="btn btn-success" style="font-size:20px" href="logoutfirm">Logout</a> -->
+
+</form>
+{%endblock%}

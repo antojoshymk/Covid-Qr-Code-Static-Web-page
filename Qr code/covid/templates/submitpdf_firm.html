@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+{%block content%}
+<button class="btn btn-success " href="firmhome" role="button">Home</a>
+
+    <button class="btn btn-success " style="margin: 30px;" type="button" onclick="location.href='logoutfirm';">Logout</button>
+    <div class="testbox" align="center"><h1> Client PDF Data Entry </h1></div>
+    
+    <form action="submitpdf_firm" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+      <h1>Submit PDF data</h1>
+    <input type="file" name="pdf" >
+    <input type="submit">
+    </form>
+    
+{%endblock%}

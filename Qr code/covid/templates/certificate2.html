@@ -1,0 +1,257 @@
+{%load static%}
+{%load chknone%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+
+
+   <i class="fa fa-align-center" aria-hidden="true"><img src="../images/qrcode.jpg" width="150"></i>
+    
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, p { 
+      padding: 0;
+      margin: 20px;
+      outline:none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 18px;
+      color: rgb(10, 1, 1);
+      line-height: 28px;
+      
+      }
+      h1 {
+      font-weight: 800;
+     
+
+      }
+      h4 {
+      margin: 25px 0 5px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 2px;
+      }
+      form {
+      
+      align-items: center;
+      width: 100%;
+      padding: 70px;
+      background: rgb(247, 248, 246);
+      box-shadow: 0 10px 80px rgb(15, 179, 28); 
+      }
+      input {
+      width: auto;
+      margin-right: 15px;
+      vertical-align: middle;
+      }
+      .question-answer label {
+      display: block;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      textarea:hover {
+      outline: none;
+      border: 1px solid #095484;
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      -webkit-border-radius: 5px; 
+      -moz-border-radius: 5px; 
+      border-radius: 5px; 
+      background-color: #098447;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      table      {
+  width: 90%;
+color: black;
+ padding:10px;
+ 
+}
+table td
+{
+ font-size:20px;
+ color:black;
+}
+table th
+{
+ visibility:hidden;
+ display:none;
+}
+input[type="text"]
+{
+ width:100%;
+ height:35px;
+ border:1px solid silver;
+ border-radius:3px;
+ font-size:17px;
+ padding:5px;
+}
+img{
+ height: auto;
+ width: 150px;
+
+}
+ .ddeee{
+
+  width: 100%; 
+  height: auto; 
+  float: left;  
+  text-align: right;
+ }
+ </style>
+  </head>
+  <body>
+    <center>
+    <div class="align-center">
+    <div class="testbox">
+      <form action="/" enctype="multipart/form-data">
+        
+        <div><h1>Client Data</h1> </div>
+        <div>
+          {%for i in name%}
+          <div class="ddeee">{% if i.photo %}
+            <img src="{{i.photo.url}}"   >
+          {% else %}
+            <img src="{% static 'images/logo.png'%}"  >
+          {% endif %}</div>
+          {%endfor%}
+          <table align=center cellspacing=5>
+            {%for i in name%}
+           
+           <tr>
+            <td class="column1"> Name :</td>
+            <td>{{i.clientname}}</td>
+           </tr>
+           {%endfor%}
+  
+  
+          
+           <tr>
+            <td class="column1">Address : </td>
+            <td></td>
+           </tr>
+           <tr>
+            <td class="column1">Street : </td>
+            <td>{{obj.street}}</td>
+           </tr>
+  
+           <tr>
+            <td class="column1">City : </td>
+            <td>{{obj.city}} </td>
+           </tr>
+           <tr>
+            <td class="column1">Country : </td>
+            <td>{{obj.country}}</td>
+           </tr>
+  
+           <!--<tr>
+            <td class="column1">Age: </td>
+            <td>{{obj.Age}} </td>
+           </tr>    
+          
+           <tr>
+            <td class="column1">College: </td>
+            <td>{{obj.College}} </td>
+           </tr>    
+           <tr>
+            <td class="column1">Course: </td>
+            <td>{{obj.Course}} </td>
+           </tr>  !-->  
+           <tr>
+            <td class="column1">Cowin Reference ID </td>
+            <td>{{obj.reference}} </td>
+           </tr>    
+           <tr>
+            <td class="column1">Email Id: </td>
+            <td>{{obj.email}} </td>
+           </tr> 
+           <tr>
+            <td class="column1">post: </td>
+            <td>{{obj.post}} </td>
+           </tr> 
+           <tr>
+            <td class="column1">phone </td>
+            <td>{{obj.phone}} </td>
+           </tr> <tr>
+            <td class="column1">Presence of Covid 19 Symptoms </td>
+            
+            
+           <td >{{obj.symptoms}} </td>
+            
+           </tr> 
+           <tr>
+            <td class="column1">Have you had Covid-19?</td>
+            <td>{{obj.coviddate|nonechk}} </td>
+           </tr> 
+           
+          <tr>
+            <td class="column1">Are you vaccinated?</td>
+            <td>{{obj.vaccinated}} </td>
+           </tr> 
+           <tr>
+            <td class="column1">Ist Dose Date</td>
+            <td>{{obj.first_dose|nonechk}} </td>
+           </tr> 
+           <tr>
+            <td class="column1">2nd Dose Date</td>
+            <td>{{obj.second_dose|nonechk}} </td>
+           </tr> 
+           <tr>
+            <td class="column1">Do you have contact with confirmed/suspected covid 19 cases during last 14 days ?</td>
+            <td>{{obj.contact_covid}} </td>
+           </tr> 
+           <tr>
+            <tr>
+              <td class="column1">Date</td>
+              <td>{{obj.cotact_date|nonechk}} </td>
+             </tr> 
+             
+            
+           <tr>
+            <td class="column1">Have you done a Covid 19 test in last 48 hours?</td>
+            <td>{{obj.covid_test}} </td>
+           </tr> 
+          </table>
+  
+        
+        
+      
+     
+   
+        
+       
+
+        
+        
+    </div>
+</div>
+</center>
+
+</body>
+</html>

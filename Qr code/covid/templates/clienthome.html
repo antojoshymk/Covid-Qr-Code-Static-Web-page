@@ -1,0 +1,10 @@
+{%extends 'base.html'%}
+{%block content%}
+<a href="/" style="font-size: 20px; color: white; padding: 30px;" >Home</a>
+<a href="logoutclient" style="font-size: 20px; color: white;" >Logout</a>
+<!-- <button  type="text" onclick="location.href='/';">Home</button> -->
+<!-- <button class="btn btn-success" type="button" onclick="location.href='logoutclient';">Logout</button> -->
+<div style=" text-align: center; margin-top: 30%;">
+<h1 style="font-size: 50px;color: white;"><b>Welcome {{client_obj.clientname}}</b></h1>
+<button class="btn btn-success" type="button" onclick="location.href='clientdatacollect';" style="font-size: 20px;"><b>Client Data Entry</b></button></div>
+{%endblock%}

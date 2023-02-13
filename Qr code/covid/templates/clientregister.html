@@ -1,0 +1,154 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<head>
+  <style>
+  .formerror {
+            color: red;
+        }
+</style></head>
+
+<section class="vh-10 bg-image" >
+    <div class="mask d-flex align-items-left h-20 gradient-custom-3">
+    
+      <div class="container h-20" >
+        <div class="float-right">
+          <div ><!---class="col-10 col-md-7 col-lg-5 col-xl-5">!-->
+            <div class="card" style="border-radius: 5px;">
+              <div class="card-body p-5">
+                <h4 class="text-uppercase text-center mb-5">Client Register</h4>
+  
+                <form action="clientregister"  name="form" method="POST"  enctype="multipart/form-data">
+                  {%csrf_token%}
+                  {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                <div id="messages"></div>
+                  
+  
+                  <div class="form-outline mb-2">
+                    <input type="text" name="clientname"onchange="return chk();"id="clientname" placeholder="Client  Name" class="form-control" required  ><b><span class="formerror"> </span></b>
+                    
+                  </div>
+                  <div id="nameclient" style="color: red;"></div>
+
+                  
+  
+                  <div class="form-outline mb-2">
+                    <input type="email" name="email" id="form3Example3cg" class="form-control " placeholder="Email" required />
+                    <!---<label class="form-label" for="form3Example3cg">Email</label>!--->
+                  </div>
+  
+                  <div class="form-outline mb-2">
+                    <input type="password" name="pwd" id="pwd" class="form-control "placeholder="Password" minlength="8" required />
+                    <!---<label class="form-label" for="form3Example4cg">Password</label>!--->
+                  </div>
+                  <div id="pwdmsg" style="color: red;"></div>
+  
+                  <div class="form-outline mb-2">
+                    <input type="password" name="pwd1"id="pwd1" class="form-control " onchange="return chkpwd();"placeholder="Repeat your password" required />
+                    <!--<label class="form-label" for="form3Example4cdg">Repeat your password</label>!--->
+                  </div>
+                  <div class="form-outline mb-2">
+                    <input type="number" name="adhar" id="adhar" class="form-control "placeholder="Adhar Number" minlength="12" required />
+                    <!---<label class="form-label" for="form3Example4cdg">Contact Number</label>!--->
+                  </div>
+                  <div id="adharmsg" style="color: red;"></div>
+                  <div class="form-outline mb-2">
+                    <input type="number" name="contactno" id="form3Example4cdg" class="form-control "placeholder="Contact Number" required />
+                    <!---<label class="form-label" for="form3Example4cdg">Contact Number</label>!--->
+                  </div>
+                  <div class="fullh" style="padding-top: 5px;">Upload Photo</div>
+                  <div class="fullh"> <input type="file" name="photo" style="width: auto; height: 40px; font-size: 12px;" required></div>
+                 
+  
+                  
+                  <div class="d-flex justify-content-center">
+                    <input type="submit"  onclick="return chkadhar();" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" value="Register">
+                  </div>
+                  <script>
+                    function chk(){
+                     // alert("inside")
+                    var form=document.getElementById("form")
+                    var error;
+                    var validchk=true;
+                    //form.addEventListener('submit',function(e){
+
+                    //e.preventDefault()
+                    //alert("please")
+                    var name=document.getElementById("clientname").value;
+                    //alert(name)
+                    //alert(name.length)
+                    if (name.length<3) {
+                      //alert(name.length)
+                      error=("* Enter name >3 characters")
+                      //alert(error)
+                    
+                  
+                      document.getElementById("nameclient").innerText=error
+                      //message.innerText=error
+                      validchk=false;
+                    }
+                    else{
+                      document.getElementById("nameclient").innerText="";
+                      
+                    }
+                    
+                  
+                  return validchk;
+                }
+                function chkadhar(){
+                  validchk=true;
+                  var form=document.getElementById("form")
+                  var adhar=document.getElementById("adhar").value;
+                  if(adhar.length>12||adhar.length<12){
+                    document.getElementById("adharmsg").innerText=("*Enter Adhar number 12 digits")
+                    validchk=false;
+                  }
+                  else{
+                    document.getElementById("adharmsg").innerText=("");
+
+                  }
+                  return validchk;
+
+                }
+                function chkpwd(){
+                  validchk=true;
+                  var form=document.getElementById("form")
+                  var pwd=document.getElementById("pwd").value;
+                  var pwd1=document.getElementById("pwd1").value;
+                  //alert(pwd)
+                  //alert(pwd1)
+                  if(pwd!=pwd1){
+                    //alert("Inside pwdchk")
+                    document.getElementById("pwdmsg").innerText=("*Check password");
+                    validchk=false;
+                  }
+                  else{
+                    document.getElementById("pwdmsg").innerText=("");
+                    validchk=true;
+                  }
+                  return validchk;
+
+                }
+                    </script>
+                   
+                  
+  
+                  
+  
+                
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</form>
+
+{%endblock%}

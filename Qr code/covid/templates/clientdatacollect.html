@@ -1,0 +1,415 @@
+{%extends 'base.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Client Data</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: rgb(10, 5, 5);
+      line-height: 28px;
+     
+      }
+      .required-field::after {
+    content: "*";
+    color: red;
+}
+
+      
+        
+
+      
+      
+
+
+      h1 {
+      font-weight: 400;
+      }
+      h4 {
+      margin: 25px 0 5px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      
+      box-shadow: 0 2px 5px #ccc; 
+      
+      }
+      input {
+      width: auto;
+      margin-right: 15px;
+      vertical-align: middle;
+      }
+      .question-answer label {
+      display: block;
+      }
+      textarea {
+      width: calc(100% - 12px);
+      padding: 5px;
+      }
+      textarea:hover {
+      outline: none;
+      border: 1px solid #095484;
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      outline: none;
+      -webkit-border-radius: 5px; 
+      -moz-border-radius: 5px; 
+      border-radius: 5px; 
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      .fullf {
+width: 100%;
+height: auto;
+padding-top: 10px;
+padding-bottom: 10px;
+background-color:white;
+float:left;
+
+      }
+      .fullh {
+width: 50%;
+height: auto;
+padding-top: 10px;
+padding-bottom: 10px;
+background-color:white;
+float:left;
+      }
+    </style>
+  </head>
+  <body >
+    <div align="right"><button class="btn btn-success" type="button" onclick="location.href='clienthome';">Home</button></div>
+   
+
+    <div class="testbox" style="background-color: white;">
+
+      
+      <form action="clientdatacollect" method="POST" name="myform"  onsubmit="return validateform()" enctype="multipart/form-data">
+        {%csrf_token%}
+        
+        <h1>Client Data Entry</h1>
+
+        <div>
+          <div class="fullf" class="required-field"> <span style="padding-right: 20px;"class="required-field">Client Name</span><input type="text" style="width: 85%;" name="clientname" value={{obj1.clientname}} ></div>
+          <div class="fullf"> <span style="font-size: 20px;"class="required-field">Address</span></div>
+                  <div class="fullh">
+                   
+                    <input type="text" name="street" style="width:95%"   placeholder="Street address" required value={{obj.street}} >
+                  </div>
+                  <div class="fullh"> <input type="text" name="city" placeholder="City" style="width: 95%;" required value={{obj.city}} ></div>
+                  <div class="fullh"> <input type="text" name="country" placeholder="Country"  style="width: 95%;"required value={{obj.country}}></div>
+                  <div class="fullh"> <input type="text" name="post"  placeholder="Postal / Zip code" style="width: 95%;"required value={{obj.post}}></div>
+                  <div class="fullf"> <span style="padding-right: 20px;"class="required-field" >E-mail</span><input type="email"  style="width: 85%;" id="email" name="email"required value={{obj1.email}} ></div>
+                  <div class="fullf"> <span style="padding-right: 20px;"class="required-field">Phone</span><input type="text" value='{{obj1.contactno}}' style="width: 85%;" name="phone"required/></div>
+                  
+          <!--<div class="fullf"> <span style="font-size: 20px;"class="required-field">  Presence of Covid 19 Symptoms </span></div>
+          <div class="fullh"> <label><input type="checkbox" name="chk[]" id="chk1"value="fever" /> Fever</label>
+         <br> 
+         <label><input type="checkbox" value="Sore Throat" name="chk[]" id="chk2" />Sore Throat</label>
+         <br>
+         <label><input type="checkbox" value="Sneezing" name="chk[]" id="chk3" />Sneezing</label>
+         <br>
+         <label><input type="checkbox" value="Other" name="chk[]" id="chk4"  />Other</label>
+          </div>
+          <div class="fullh">
+            
+            <label><input type="checkbox" value="Bodyache" name="chk[]" id="chk5" />Body Ache</label><br>
+            <label><input type="checkbox" value="Headache" name="chk[]" id="chk6" />Head Ache</label><br>
+            <label><input type="checkbox" value="Shortnessbreathe" name="chk[]"id="chk7"/>Shortness of breathe</label><br>
+            <label><input type="checkbox" value="Diarrhoea" name="chk[]" id="chk8"  />Diarrhoea</label>
+            
+            
+          
+          </div>!-->
+          <div id="chkmsg" style="color: red;"></div>
+          
+          <div class="fullf"> <span style="font-size: 20px;"class="required-field"> Have you had Covid-19? </span></div>
+          <div class="fullh" style="width: 70%;">
+            <label><input type="radio" value="yes"onclick="disableinputhadcovid(this.value);" name="hadcovid19" id="hadcovid19y" required/>Yes </label>
+            <span style="padding-left: 10px;"> Select Date</span> <input type="date" id="hadcovid19date" name="coviddate" style="width: 150px; height: 30px; font-size: 10px;">
+            </div>
+            <div class="fullh" style="width: 30%;">
+              <label><input type="radio" value="no" onclick="disableinputhadcovid(this.value);" name="hadcovid19" id="hadcovid19n" required />No</label>
+
+              </div>
+              <div id="hadcovid19" style="color: red;"></div>
+              
+              <div class="fullf"> <span style="font-size: 20px;"class="required-field"> Are you vaccinated? </span></div>
+
+              <div class="fullf" >
+                <label><input type="radio"value="yes" onclick="disableinput(this.value);"{%if obj.vaccinated != "no"%}checked{% endif%}
+                   name="vaccinated" />Yes</label>
+                <span style="padding-left: 5px;">Ist Date <input type="date" 
+                  style="width: 108px; height: 30px; font-size: 10px;" 
+                  value="{{obj.first_dose|date:'Y-m-d'}}" min="2021-01-16" max="{{obj.todaydate|date:'Y-m-d'}}"
+                  name="firstdose" id="firstdose"> </span>
+                <span style="padding-left: 5px;">2nd Date <input type="date" onchange="return vaccinedate();" style="width: 108px; height: 30px; font-size: 10px;" name="seconddose" id="seconddose"
+                  value="{{obj.second_dose|date:'Y-m-d'}}"min="2021-01-16" max="{{obj.todaydate|date:'Y-m-d'}}"></span>
+                  <div id="vaccinatedmsg" style="color: red;"></div>
+                <span style="padding-left: 5px;"><label><input type="radio"  value="no"onclick="disableinput(this.value);"{%if obj.vaccinated != "yes"%}checked{% endif%}
+                   name="vaccinated" />No</label></span>
+                </div>
+                <div class="fullf"> <span style="padding-right: 20px;">Cowin Reference ID</span><input type="text" value='{{obj.reference}}' style="width: 85%;" name="reference"/></div>
+                <div class="fullf"> <span style="font-size: 20px;"class="required-field">Do you have contact with confirmed/suspected covid 19 cases during last 14 days ?</span></div>
+                
+                <div class="fullh" style="width: 70%;"><label><input type="radio" requird id="contactcovidy" onclick="contactcovid(this.value);" value="yes" name="contact_covid" /></label>
+                  If yes , Date <input type="date" id="contactcoviddate" name="contact_date" style="width: 150px; height: 30px; font-size: 10px;"></div>
+                <div class="fullh" style="width: 30%;"><label><input type="radio" required id="contactcovidn" onclick="contactcovid(this.value);"value="no" name="contact_covid" />No</label></div>
+                <div id="contactcovidmsg" style="color: red;"></div>
+
+                <div class="fullf"> <span style="font-size: 20px;"class="required-field">Are you a co passenger of Covid 19 cases in a vehicle/Aeroplane?</span></div>
+                <div class="fullh" style="width: 70%;"> <label><input type="radio"required value="yes" onclick="passangerdate(this.value);"name="passanger" id="passanger" />Yes</label>
+                  If yes <input type="date"  id="passngerdate"style="width: 150px; height: 30px; font-size: 10px;"></div>
+                  <div class="fullh" style="width: 30%;"> <label><input type="radio"required value="no" onclick="passangerdate(this.value);" name="passanger" id="passangern" />No</label></div>
+                  <div id="passangermsg" style="color: red;"></div>
+                  <div class="fullf"> <span style="font-size: 20px;"class="required-field">Have you done a Covid 19 test in last 48 hours?</span></div>
+                  <div class="fullh"><label><input type="radio"required value="yes" name="covid_test" />Yes</label></div>
+                  <div class="fullh"> <label><input type="radio" required value="no" name="covid_test" />No</label></div>
+
+                  
+                  
+
+                  <div class="fullf"><button type="submit" onclick="return chksymptoms();"  style="width: 100%;">Generate PDF and QR Code</button></div>
+        </div>
+        
+      </form>
+    </div>
+    
+    <script>
+      function passanger(){
+        //alert("inside")
+        validchk=true;
+        var form=document.getElementById("myform");
+        var passangery=document.getElementById("passangery")
+        var passangern=document.getElementById("passangern")
+        var passangerdate=document.getElementById("passangerdate").value;
+        //alert(passangerdate.value)
+        if((passangery.checked==true)||(passangern.checked==true)){
+          validchk=true;
+          document.getElementById("passangermsg").innerText="";
+        }
+        else{
+          validchk=false;
+          document.getElementById("passangermsg").innerText="*Please Enter Dou you have any contact with covid patients while travelling"
+        }
+        if(passangery.checked==true){
+         // alert("againchecked")
+          if(passangerdate==""){
+            //alert(passangerdate)
+            document.getElementById("passangermsg").innerText="Please select date";
+            validchk=false;
+          }
+          else {
+            document.getElementById("passangermsg").innerText="";
+            validchk=true;
+          }
+        }
+        return validchk;
+      
+      }
+      function contactcovid(){
+       // alert("inside")
+        validchk=true;
+        var form=document.getElementById("myform");
+        var contactcovidy=document.getElementById("contactcovidy")
+        var contactcovidn=document.getElementById("contactcovidn")
+        var contactcoviddate=document.getElementById("contactcoviddate").value;
+        //alert(hadcovid19date.value)
+        if((contactcovidy.checked==true)||(contactcovidn.checked==true)){
+          validchk=true;
+          document.getElementById("contactcovidmsg").innerText="";
+        }
+        else{
+          validchk=false;
+          document.getElementById("contactcovidmsg").innerText="*Please Enter Dou you have any contact with covid patients"
+        }
+        if(contactcovidy.checked==true){
+         // alert("againchecked")
+          if(contactcoviddate==""){
+           // alert(contactcoviddate)
+            document.getElementById("contactcovidmsg").innerText="Please select date";
+            validchk=false;
+          }
+          else {
+            document.getElementById("contactcovidmsg").innerText="";
+            validchk=true;
+          }
+        }
+        return validchk;
+      }
+      function vaccinedate()
+      {
+        validchk=true
+        var form=document.getElementById("myform");
+        var firstdose=document.getElementById("firstdose").value
+        var seconddose=(document.getElementById("seconddose")).value
+        //alert(firstdose)
+        var x=(new Date(seconddose)-new Date(firstdose))
+        var days=(x/(1000*3600*24))
+        //alert(days)
+        if (days<28){
+          //alert("hii")
+          document.getElementById("vaccinatedmsg").innerText="Date must be atleast 28 days difference needed"
+          validchk=false
+        }
+        else
+        {
+          document.getElementById("vaccinatedmsg").innerText=""
+          validchk=true
+
+        }
+        return validchk
+        
+
+      }
+      function hadcovid19(){
+        //alert("inside")
+        validchk=true;
+        var form=document.getElementById("myform");
+        var hadcovid19y=document.getElementById("hadcovid19y")
+        var hadcovid19n=document.getElementById("hadcovid19n")
+        var hadcovid19date=document.getElementById("hadcovid19date").value;
+        //alert(hadcovid19date.value)
+        if((hadcovid19y.checked==true)||(hadcovid19n.checked==true)){
+          validchk=true;
+          document.getElementById("hadcovid19").innerText="";
+        }
+        else{
+          validchk=false;
+          document.getElementById("hadcovid19").innerText="*Please Enter Covid affected or not"
+        }
+        if(hadcovid19y.checked==true){
+          //alert("againchecked")
+         // alert("checkhere")
+          //alert(hadcovid19date)
+          if(hadcovid19date==""){
+            //alert(hadcovid19date)
+            document.getElementById("hadcovid19").innerText="Please select date";
+            validchk=false;
+          }
+          else{
+            document.getElementById("hadcovid19").innerText="";
+            validchk=true;
+          }
+        }
+        return validchk;
+      }
+      function chksymptoms(){
+                  validchk=true;
+                  var form=document.getElementById("myform");
+                  var chk1=document.getElementById("chk1");
+                  var chk2=document.getElementById("chk2");
+                  var chk3=document.getElementById("chk3");
+                  var chk4=document.getElementById("chk4");
+                  var chk5=document.getElementById("chk5");
+                  var chk6=document.getElementById("chk6");
+                  var chk7=document.getElementById("chk7");
+                  var chk8=document.getElementById("chk8");
+                  if((chk1.checked==true)||(chk2.checked==true)||(chk3.checked==true)||(chk4.checked==true)||(chk5.checked==true)||(chk6.checked==true)||(chk7.checked==true)||(chk8.checked==true)){
+                    validchk=true
+                    document.getElementById("chkmsg").innerText=("");
+                  }
+                  
+                  //for (var chkmark of chk)
+                  //{if (chkmark.checked)
+                    //alert(chkmark);
+                  //}
+                  else{
+                    document.getElementById("chkmsg").innerText=("*Select Symptoms otherwise check other")
+                    validchk=false;
+                  }
+                  
+                    
+
+                  //alert(validchk)
+                  hadcovid19();
+                  contactcovid();
+                  //passanger();
+                  //alert(validchk)
+                  return validchk;
+
+                }
+                function disableinput(a){
+                  //alert("inside disable");
+                  if(a=="yes")
+                  {document.getElementById("firstdose").disabled=false;
+                document.getElementById("seconddose").disabled=false;}
+                
+                if(a=="no"){
+                  document.getElementById("firstdose").disabled=true;
+                  document.getElementById("seconddose").disabled=true;
+                }
+              }
+              function disableinputhadcovid(a){
+                  //alert("inside disable");
+                  if(a=="yes")
+                  {document.getElementById("hadcovid19date").disabled=false;
+                }
+                
+                if(a=="no"){
+                  document.getElementById("hadcovid19date").disabled=true;
+                  
+                }
+              }
+              function contactcovid(a){
+                //alert("inside disable");
+                  if(a=="yes")
+                  {document.getElementById("contactcoviddate").disabled=false;
+                }
+                
+                if(a=="no"){
+                  
+                  document.getElementById("contactcoviddate").disabled=true;
+                  
+                }
+                
+              }
+              function passangerdate(a){
+                //alert("inside disable");
+                  if(a=="yes")
+                  {document.getElementById("passngerdate").disabled=false;
+                }
+                
+                if(a=="no"){
+                  
+                  document.getElementById("passngerdate").disabled=true;
+                  
+                }
+                
+              }
+    </script>
+  </body>
+
+</html>
+{%endblock%}

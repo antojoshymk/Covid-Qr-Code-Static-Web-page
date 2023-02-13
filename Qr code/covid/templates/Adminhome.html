@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{%block content%}
+<style>
+    nav{
+        box-shadow: 0 10px 80px rgb(179, 15, 15); 
+        padding: 70px;
+        background: rgb(15, 1, 48);
+
+    }
+    ul{
+        box-shadow: 0 10px 80px rgb(179, 15, 15); 
+        padding: 20px;
+    }
+    li{
+        box-shadow: 0 10px 80px rgb(179, 15, 15); 
+    }
+</style>
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Admin Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+  
+    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+      <!-- <ul class="navbar-nav mr-auto"> -->
+        <!-- <li class="nav-item">
+            <a class="nav-link" style="font-size:x-large" href="approveclient">Client Approval</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large" href="approvefirm">Firm Approval</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large" href="logoutadmin">Logout</a>
+          </li> -->
+              
+      <!-- </ul> -->
+      
+    <!-- </div>
+  </nav> -->
+<h1  style="color: white; text-align: left; font-size: 50px;" > <b>Welcome Admin</b></h1>
+
+<div style=" text-align: center; margin-top: 30%;"></div>
+<button class="btn btn-success" style="width: 300px; height: 60px; font-size: large;" type="button" onclick="location.href='approveclient';">Client Approval</button><br> <br>
+<button class="btn btn-success" style="width: 300px; height: 60px; font-size: large;" type="button" onclick="location.href='approvefirm';">Firm Approval</button><br>
+<a href="logoutadmin" role="button"  style="font-size: 20px; color: white;">Logout</a>
+<!-- <button class="btn btn-success" type="button" onclick="location.href='#';">Logout</button> -->
+{%endblock%}

@@ -1,0 +1,75 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<style>
+  nav{
+      box-shadow: 0 10px 80px rgb(179, 15, 15); 
+      padding: 70px;
+      background: rgb(15, 1, 48);
+
+  }
+  ul{
+      box-shadow: 0 10px 80px rgb(179, 15, 15); 
+      padding: 20px;
+  }
+  li{
+      box-shadow: 0 10px 80px rgb(179, 15, 15); 
+  }
+</style>
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">QR Code Scan Upload QR</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+          <a class="nav-link"style="font-size:x-large" href="firmhome">Firm Home</a>
+        </li>
+       
+        
+        
+        <li class="nav-item">
+          <a class="nav-link"style="font-size:x-large" href="logoutfirm">Logout</a>
+        </li>
+            
+    </ul>
+    
+  </div>
+</nav> -->
+<!-- <button class="btn btn-success " onclick="location.href='firmhome';" role="button">Home</a>
+
+<button class="btn btn-success " style="margin: 30px;" type="button" onclick="location.href='logoutfirm';">Logout</button> -->
+<div class="testbox" align="center"><h1 style="color: white; font-size: 30px;"><b> QR Code Processor</b> </h1></div>
+
+<form action="scancode" method="post" enctype="multipart/form-data">
+  {%csrf_token%}
+  <!-- <h1 style="color: white; text-align: center;">Select QR Code</h1> -->
+<input type="file" name="scan" >
+
+
+<input type="submit">
+</form>
+<button class="btn btn-success " onclick="location.href='firmhome';" role="button">Home</a>
+
+  <button class="btn btn-success " style="margin: 30px;" type="button" onclick="location.href='logoutfirm';">Logout</button>
+<!---<form action="videoscan" method="post">
+  {%csrf_token%}
+  <div id="my_camera">
+<h1>Focus QR code to Camera & Scan</h1>
+  <input type="submit" value="Video scan" onclick="runCam()">
+  </div>
+  <script>
+    function runCam()
+    {
+      navigator.mediaDevices.getUserMedia({video:true})
+    .then(stream=>{
+      document.getElementById("temp").srcObject=stream;
+    })
+    
+      
+  }
+  </script>
+</form>!--->
+{%endblock%}

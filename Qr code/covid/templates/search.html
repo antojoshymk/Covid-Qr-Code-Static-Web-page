@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+{% load chknone%}
+{%block content%}
+<style>
+    nav{
+        /* box-shadow: 0 10px 80px rgb(179, 15, 15);  */
+        padding: 70px;
+        background: rgb(15, 1, 48);
+
+    }
+    ul{
+        /* box-shadow: 0 10px 80px rgb(179, 15, 15);  */
+        padding: 20px;
+    }
+    li{
+        /* box-shadow: 0 10px 80px rgb(179, 15, 15);  */
+       
+    }
+    
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><b>QR Code Search Details</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large; color:black;" href="firmhome">Firm Home</a>
+          </li>
+         
+          
+          
+          <li class="nav-item">
+            <a class="nav-link"style="font-size:x-large; color:black;" href="logoutfirm">Logout</a>
+          </li>
+              
+      </ul>
+      
+    </div>
+  </nav>
+<h1 style="color:white;">Search Data</h1>
+<form method="search" method="get">
+    
+
+    <input type="date" name="date" required>
+    <input type="submit" class="btn btn-success" value="Submit">
+</form>
+<center><h3 style="background-color: white;">Scan Details: {{date|nonechk}}</h3></center>
+<table style="background-color: white;  text-align: center;">
+    <th><b>Sl. No</b></th>
+    <th><b>Data</b></th>
+    <th><b>Download Data</b></th>
+    {% for i in firmstore_obj%}
+    <tr  >
+        <td style="width: 10%; margin-bottom: 10px;">{{forloop.counter}}</td>
+        <td style="text-align: left;  margin-bottom: 10px;">{{i.data}}</td>
+        <td style="width: 10%;  margin-bottom: 10px;"><h1 style="font-size: 16px;"><a href={{i.pdf.url}} download class="button" > Download PDF </a></h1></td>
+    </tr>
+    <tr>
+      <td style="height: 50px;">
+              </td>
+      <td style="height: 50px;"></td>
+      <td style="height: 50px;"></td>
+    </tr>
+    {%endfor%}
+
+</table>
+
+
+{%endblock%}

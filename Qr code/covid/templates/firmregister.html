@@ -1,0 +1,151 @@
+{%extends 'base.html'%}
+{%block content%}
+<section class="vh-10 bg-image" >
+    <div class="mask d-flex align-items-left h-20 gradient-custom-3
+
+    ">
+    
+      <div class="container h-20" >
+        <div class="float-right">
+          <div ><!---class="col-10 col-md-7 col-lg-5 col-xl-5">!-->
+            <div class="card" style="border-radius: 5px;">
+              <div class="card-body p-5">
+                <h4 class="text-uppercase text-center mb-5">Firm Register</h4>
+  
+                <form action="#" name="form"method="POST">
+                  {%csrf_token%}
+                  {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
+                  
+  
+                  <div class="form-outline mb-2">
+                    <input type="text" name="firmname"id="firmname" onchange="return chk();" required placeholder="Company Name" class="form-control"  />
+                    
+                  </div>
+                  <div id="namefirm" style="color: red;"></div>
+                  
+  
+                  <div class="form-outline mb-2">
+                    <input type="email" name="email" id="form3Example3cg" class="form-control " required placeholder="Email" />
+                    <!---<label class="form-label" for="form3Example3cg">Email</label>!--->
+                  </div>
+  
+                  <div class="form-outline mb-2">
+                    <input type="password" name="pwd" id="pwd" class="form-control "placeholder="Password" minlength="8" required />
+                    <!---<label class="form-label" for="form3Example4cg">Password</label>!--->
+                  </div>
+                  <div id="pwdmsg" style="color: red;"></div>
+  
+                  <div class="form-outline mb-2">
+                    <input type="password" name="pwd1"id="pwd1" class="form-control " onchange="return chkpwd();"placeholder="Repeat your password" required />
+                    <!--<label class="form-label" for="form3Example4cdg">Repeat your password</label>!--->
+                  </div>
+                  <div class="form-outline mb-2">
+                    <input type="number" name="licence" id="form3Example4cdg" class="form-control "placeholder="Licence Number" minlength="12" required />
+                    <!---<label class="form-label" for="form3Example4cdg">Contact Number</label>!--->
+                  </div>
+                  
+                  <div class="form-outline mb-2">
+                    <input type="number" name="contactno" id="contactno" onchange="return chkcontact();" class="form-control "placeholder="Contact Number" />
+                    <!---<label class="form-label" for="form3Example4cdg">Contact Number</label>!--->
+                  </div>
+                  <div id="phonemsg" style="color: red;"></div>
+                  <div class="form-outline mb-2">
+                    <input type="text" name="location"id="form3Example4cdg" class="form-control "placeholder="Office address" required/>
+                    <!---<label class="form-label" for="form3Example4cdg">Location</label>!--->
+                  </div>
+  
+                  
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" onclick="return chk();" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                  </div>
+  
+                  
+  
+                </form>
+                <script>
+                  function chkcontact(){
+                    validchk=true;
+                  var form=document.getElementById("form")
+                  var contactno=document.getElementById("contactno").value;
+                  if(contactno.length!=10){
+                    document.getElementById("phonemsg").innerText=("*Mobile number 10 digits")
+                    validchk=false;
+                  }
+                  else{
+                    document.getElementById("phonemsg").innerText=("");
+                    validchk=true;
+
+                  }
+                  return validchk;
+
+                  }
+                  function chk(){
+                    //alert("inside")
+                   var form=document.getElementById("form")
+                   var error;
+                   var validchk=true;
+                   //form.addEventListener('submit',function(e){
+              
+                   //e.preventDefault()
+                   //alert("please")
+                   var name=document.getElementById("firmname").value;
+                   //alert(name)
+                   //alert(name.length)
+                   if (name=="") {
+                     //alert(name.length)
+                     error=("* Please Enter Firm name")
+                     //alert(error)
+                   
+                 
+                     document.getElementById("namefirm").innerText=error
+                     //message.innerText=error
+                     validchk=false;
+                   }
+                   else{
+                     document.getElementById("namefirm").innerText="";
+                     validchk=true;
+                     
+                   }
+                   
+                 
+                 return validchk;
+                 chkpwd();
+               }
+               function chkpwd(){
+                 //alert("inside")
+                  validchk=true;
+                  var form=document.getElementById("form")
+                  var pwd=document.getElementById("pwd").value;
+                  var pwd1=document.getElementById("pwd1").value;
+                  //alert(pwd)
+                  //alert(pwd1)
+                  if(pwd!=pwd1){
+                    //alert("Inside pwdchk")
+                    document.getElementById("pwdmsg").innerText=("*Check password");
+                    validchk=false;
+                  }
+                  else{
+                    document.getElementById("pwdmsg").innerText=("");
+                    validchk=true;
+                  }
+                  return validchk;
+
+                }
+                
+                </script>
+              
+                
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+{%endblock%}
